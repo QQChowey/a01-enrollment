@@ -51,6 +51,8 @@ CREATE TABLE Section (
     end_date           DATE NOT NULL,
     capacity           INT NOT NULL CHECK (capacity >= 0), -- max number of enrolled students
     waitlist_capacity  INT NOT NULL DEFAULT 0 CHECK (waitlist_capacity >= 0),
+	days               VARCHAR(7) NOT NULL -- meeting days (R = Thursday)
+                       CHECK (days ~ '^M?T?W?R?F?S?$' AND days <> ''), -- only valid day letters in week order (assumes Sunday is not an option)
     start_time         TIME,
     end_time           TIME,
     location           VARCHAR(50),
