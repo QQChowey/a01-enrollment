@@ -99,7 +99,7 @@ CREATE TABLE Instructor (
 CREATE TABLE Unit_Override (
     student_id     INT NOT NULL,
     term           VARCHAR(100) NOT NULL,
-    max_units      INT NOT NULL CHECK (max_units BETWEEN 1 AND 30),
+    max_units      INT NOT NULL CHECK (max_units BETWEEN 1 AND 21),
     approver_name  VARCHAR(100) NOT NULL,
     approver_role  VARCHAR(20) NOT NULL
                    CHECK (approver_role IN ('Instructor', 'Advisor', 'Department Chair', 'Dean')),
