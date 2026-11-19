@@ -38,7 +38,7 @@ INSERT INTO Course (course_id, name, units, department) VALUES
 --   instructor_id is filled in automatically: 1, 2, 3
 -- ------------------------------------------------------------
 INSERT INTO Instructor (first_name, last_name, email) VALUES
-('Yuva',  'Athur', 'yuva.athur@sjsu.edu'),      -- instructor_id 1
+('Yuva',  'Arthur', 'yuva.athur@sjsu.edu'),      -- instructor_id 1
 ('Maria', 'Gomez', 'maria.gomez@sjsu.edu'),     -- instructor_id 2
 ('James', 'Lee',   'james.lee@sjsu.edu');       -- instructor_id 3
 
@@ -65,7 +65,7 @@ INSERT INTO Section (course_id, section_no, term, start_date, end_date, capacity
 ('CS157A', 1, 'Fall 2026',   '2026-08-20', '2026-12-08', 40, 10, 'TR', '09:00', '10:15', 'DH 450',  1),
 ('CS146',  1, 'Fall 2026',   '2026-08-20', '2026-12-08', 35,  5, 'MW', '10:30', '11:45', 'MH 222',  2),
 ('CS46B',  1, 'Fall 2026',   '2026-08-20', '2026-12-08', 30,  5, 'TR', '13:30', '14:45', 'SCI 311', 3),
-('MATH42', 2, 'Fall 2026',   '2026-08-20', '2026-12-08', 30,  5, 'F',  '09:00', '11:45', 'MH 234',  NULL),
+('MATH42', 2, 'Fall 2026',   '2026-08-20', '2026-12-08', 1,  5, 'F',  '09:00', '11:45', 'MH 234',  NULL),
 ('CS46B',  1, 'Spring 2026', '2026-01-22', '2026-05-12', 30,  5, 'TR', '13:30', '14:45', 'SCI 311', 3);
 
 -- ------------------------------------------------------------
