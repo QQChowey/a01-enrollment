@@ -885,6 +885,7 @@ SELECT
     s.term,
     s.section_no,
     c.name AS course_name,
+	c.department,
     COALESCE(i.first_name || ' ' || i.last_name, 'TBA') AS instructor,
     s.days,
     s.start_time,
