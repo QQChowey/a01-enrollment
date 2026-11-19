@@ -5,3 +5,4 @@ app/db.ini.example
 /app/.venv
 /app/__pycache__
 /app/venv
+app/db.ini
