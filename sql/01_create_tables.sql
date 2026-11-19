@@ -203,7 +203,6 @@ CREATE TABLE Enrollment (
     time_enrolled  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES Student(student_id) ON DELETE CASCADE,
     FOREIGN KEY (course_id, term, section_no) REFERENCES Section(course_id, term, section_no) ON DELETE CASCADE,
-    UNIQUE (student_id, course_id, term, section_no), -- no double enrollment
     CHECK (grade IS NULL OR status = 'completed') -- only completed rows get a grade
 );
  
