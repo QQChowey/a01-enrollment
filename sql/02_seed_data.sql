@@ -100,8 +100,7 @@ INSERT INTO AP_Credit (score, student_id, course_id) VALUES
 INSERT INTO Course_Prerequisite (course_id, prereq_course_id, min_grade, override) VALUES
 ('CS46B',  'CS46A',  'C-', FALSE),
 ('CS146',  'CS46B',  'C-', FALSE),
-('CS146',  'MATH42', 'C-', FALSE),
-('CS157A', 'CS146',  'C-', TRUE);
+('CS146',  'MATH42', 'C-', FALSE);
 
 -- ------------------------------------------------------------
 -- MAJOR_COURSE_OFFERING (8 rows)
@@ -146,5 +145,4 @@ INSERT INTO Enrollment (student_id, course_id, term, section_no, status, grade) 
 -- ------------------------------------------------------------
 INSERT INTO Waitlist (student_id, course_id, term, section_no, position) VALUES
 (1003, 'CS157A', 'Fall 2026', 7, 1),
-(1004, 'CS157A', 'Fall 2026', 7, 2),
-(1005, 'CS157A', 'Fall 2026', 7, 3);
+(1004, 'CS157A', 'Fall 2026', 7, 2);
