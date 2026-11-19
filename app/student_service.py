@@ -111,7 +111,7 @@ def search(settings, department, keyword, term):
         rows,
         headers=headers,
         tablefmt="simple",
-        maxcolwidths=[8, 10, 5, 20, 15, 5, 8, 8, 6, 8, 6, 8, 6]
+        maxcolwidths=[8, 10, 5, 20, 15, 15, 5, 8, 8, 6, 8, 6, 8, 6]
     ))
     print()
     return len(rows)

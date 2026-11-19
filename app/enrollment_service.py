@@ -26,16 +26,26 @@ from psycopg import errors
 import db
 
 
-def enroll(settings, student_id, course_id, term, section_no):
+def enroll(settings, student_id, course_id, term, section_no, pause_before_commit=False):
     """Tries to enroll. Returns "enrolled", "full", or "rejected"."""
+    print_section(settings, course_id, term, section_no)
     with db.connect(settings) as conn:
+        # Show the triggers' RAISE NOTICE messages
+        conn.add_notice_handler(lambda diag: print("  Database: " + diag.message_primary))
         try:
             conn.execute(
                 "INSERT INTO Enrollment (student_id, course_id, term, section_no) "
                 "VALUES (%s, %s, %s, %s)",
                 (student_id, course_id, term, section_no),
             )
-            input("PAUSED. Press [Enter] to continue to commit.")
+            if pause_before_commit:
+                answer = input("PAUSED before COMMIT. Press [Enter] to continue to commit, or type r to roll back.")
+                if answer.strip().lower() == "r":
+                    conn.rollback()
+                    print("ROLLED BACK. Enrollment is cancelled.")
+                    print_section(settings, course_id, term, section_no)
+                    return
+
             conn.commit()
             print(f"Enrolled in {course_id} Sec {section_no}.")
             return "enrolled"

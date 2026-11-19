@@ -81,7 +81,7 @@ def student_menu(settings, student_id, name):
                 print(f"{found} section(s).")
             elif choice == "2":
                 course_id, section_no = ask_section()
-                result = enrollment_service.enroll(settings, student_id, course_id, TERM, section_no)
+                result = enrollment_service.enroll(settings, student_id, course_id, TERM, section_no, True)
                 if result == "full":
                     if ask("Join the waitlist? (y/N)").lower() == "y":
                         enrollment_service.join_waitlist(settings, student_id, course_id, TERM, section_no)
