@@ -34,7 +34,7 @@ def ask_int(prompt):
 
 def ask_default(prompt, default):
     """Blank input means "use the default"."""
-    s = ask(f"{prompt} [{default}]")
+    s = ask(f"{prompt} [Default: {default}]")
     return default if s == "" else s
 
 

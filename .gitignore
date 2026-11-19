@@ -1,3 +1,7 @@
 v0.8/.DS_Store
 .DS_Store
 .DS_Store
+app/db.ini.example
+/app/.venv
+/app/__pycache__
+/app/venv

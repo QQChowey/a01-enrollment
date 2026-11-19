@@ -5,6 +5,7 @@ User input is never glued into the SQL text, which is what stops SQL
 injection. (Never build SQL with f-strings or +.)
 """
 import db
+from tabulate import tabulate
 
 # Main query 1: the class search. Used by the menu AND by the EXPLAIN option.
 # Same query as Step 3 in sql/03_demo_checks.sql.
@@ -38,7 +39,7 @@ SCHEDULE_SQL = (
 def list_majors(settings):
     """Returns [(major_id, name), ...] so the menu can show the choices."""
     with db.connect(settings) as conn:
-        return conn.execute("SELECT major_id, name FROM Major ORDER BY major_id").fetchall()
+        return conn.execute("SELECT * FROM major").fetchall()
 
 
 def register(settings, first, last, email, phone, address, major_id):
@@ -79,11 +80,40 @@ def find_student(settings, student_id):
 def search(settings, department, keyword, term):
     """Prints sections in a department whose course name contains the keyword."""
     with db.connect(settings) as conn:
-        rows = conn.execute(SEARCH_SQL, (department, "%" + keyword + "%", term)).fetchall()
-    print(f"{'Course':<8} {'Sec':<4} {'Name':<45} {'Days':<5} {'Start':<6} Seats left")
-    for course_id, section_no, name, days, start, seats_left in rows:
-        print(f"{course_id:<8} {section_no:<4} {name:<45} {days:<5} "
-              f"{start.strftime('%H:%M'):<6} {seats_left}")
+        rows = conn.execute(
+            """
+            SELECT *
+            FROM Section_Seat_Status
+            WHERE term = %s
+              AND (%s = '' OR course_name ILIKE %s)
+              AND department = %s
+            """,
+            (
+                term,
+                keyword,
+                f"%{keyword}%",
+                department
+            ),
+        ).fetchall()
+
+    print()
+    if not rows:
+        print("No sections found.")
+        print()
+        return 0
+
+    headers = [
+        "Course", "Semester", "Section", "Course Name", "Department",
+        "Instructor", "Days", "Start", "End", "Cap",
+        "Enrolled", "Avail.", "WL Cap", "WL"
+    ]
+    print(tabulate(
+        rows,
+        headers=headers,
+        tablefmt="simple",
+        maxcolwidths=[8, 10, 5, 20, 15, 5, 8, 8, 6, 8, 6, 8, 6]
+    ))
+    print()
     return len(rows)
 
 

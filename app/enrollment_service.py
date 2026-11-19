@@ -35,6 +35,7 @@ def enroll(settings, student_id, course_id, term, section_no):
                 "VALUES (%s, %s, %s, %s)",
                 (student_id, course_id, term, section_no),
             )
+            input("PAUSED. Press [Enter] to continue to commit.")
             conn.commit()
             print(f"Enrolled in {course_id} Sec {section_no}.")
             return "enrolled"
